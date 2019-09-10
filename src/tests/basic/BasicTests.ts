@@ -12,4 +12,10 @@ export default class BasicTests extends TestItem {
         Assert.isTrue(d instanceof Date);
     }
 
+    @Test
+    public today(): void {
+        const d = DateTime.today;
+        Assert.isEmpty(d.date.time.milliseconds);
+    }
+
 }
