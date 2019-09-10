@@ -1,0 +1,22 @@
+{
+  "name": "@web-atoms/date-time",
+  "version": "1.0.0",
+  "description": "DateTime library for Web Atoms",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/web-atoms/date-time.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/web-atoms/date-time/issues"
+  },
+  "homepage": "https://github.com/web-atoms/date-time#readme",
+  "devDependencies": {
+    "@web-atoms/unit-test": "^1.0.1"
+  }
+}
