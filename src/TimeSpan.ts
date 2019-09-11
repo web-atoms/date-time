@@ -10,7 +10,32 @@ export const msHours = 3600000;
 
 export const msDays = 24 * msHours;
 
+const timeSpanFormat = /(?<hours>\d{1,2}):(?<mins>\d{1,2})(?<ampm>\s+(am|pm)?)/gi;
+
 export default class TimeSpan {
+
+    public static fromDays(n: number): TimeSpan {
+        return new TimeSpan(n * msDays);
+    }
+
+    public static fromHours(n: number): TimeSpan {
+        return new TimeSpan(n * msHours);
+    }
+
+    public static fromMinutes(n: number): TimeSpan {
+        return new TimeSpan(n * msMinutes);
+    }
+
+    public static fromSeconds(n: number): TimeSpan {
+        return new TimeSpan(n * msSeconds);
+    }
+
+    public static parse(text: string): TimeSpan {
+        const a = timeSpanFormat.exec(text) as any;
+        if (a.groups) {
+            
+        }
+    }
 
     public milliseconds: number;
 
@@ -45,4 +70,11 @@ export default class TimeSpan {
         return this.milliseconds / msDays;
     }
 
+    /**
+     * Duration is always positive TimeSpan
+     */
+    public duration(): TimeSpan {
+        const t = this.milliseconds;
+        return new TimeSpan(t > 0 ? t : -t);
+    }
 }
