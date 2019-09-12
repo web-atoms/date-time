@@ -94,45 +94,53 @@ export default class TimeSpan {
         return new TimeSpan(d, isPM ? h + 12 : h, m, s, ms);
     }
 
-    public milliseconds: number;
+    private msSinceEpoch: number;
 
     public get totalSeconds(): number {
-        return this.milliseconds * secondsPerMS;
+        return this.msSinceEpoch * secondsPerMS;
     }
 
     public get totalMinutes(): number {
-        return this.milliseconds * minutesPerMS;
+        return this.msSinceEpoch * minutesPerMS;
     }
 
     public get totalHours(): number {
-        return this.milliseconds * hoursPerMS;
+        return this.msSinceEpoch * hoursPerMS;
     }
 
     public get totalDays(): number {
-        return this.milliseconds * daysPerMS;
+        return this.msSinceEpoch * daysPerMS;
+    }
+
+    public get totalMilliseconds(): number {
+        return this.msSinceEpoch;
     }
 
     public get days(): number {
-        return Math.floor(this.milliseconds / msDays);
+        return Math.floor(this.msSinceEpoch / msDays);
     }
 
     public get hours(): number {
-        return Math.floor((this.milliseconds / msHours) % 24);
+        return Math.floor((this.msSinceEpoch / msHours) % 24);
     }
 
     public get minutes(): number {
-        return Math.floor((this.milliseconds / msMinutes) % 60);
+        return Math.floor((this.msSinceEpoch / msMinutes) % 60);
     }
 
     public get seconds(): number {
-        return Math.floor((this.milliseconds / msSeconds) % 60);
+        return Math.floor((this.msSinceEpoch / msSeconds) % 60);
+    }
+
+    public get milliseconds(): number {
+        return Math.floor(this.msSinceEpoch % 1000);
     }
 
     /**
      * Duration is always positive TimeSpan
      */
     public get duration(): TimeSpan {
-        const t = this.milliseconds;
+        const t = this.msSinceEpoch;
         return new TimeSpan(t > 0 ? t : -t);
     }
 
@@ -140,7 +148,7 @@ export default class TimeSpan {
      * Removes days and only trims given TimeSpan to TimeOfDay
      */
     public get trimmedTime(): TimeSpan {
-        return new TimeSpan(Math.ceil(this.milliseconds % msDays));
+        return new TimeSpan(Math.ceil(this.msSinceEpoch % msDays));
     }
 
     constructor(ms: number);
@@ -148,9 +156,9 @@ export default class TimeSpan {
     constructor(days: number, hours: number, minutes?: number, seconds?: number, milliseconds?: number)
     constructor(days: number, hours?: number, minutes?: number, seconds?: number, milliseconds?: number) {
         if (arguments.length === 1) {
-                this.milliseconds = days;
+                this.msSinceEpoch = days;
         } else {
-            this.milliseconds =
+            this.msSinceEpoch =
                 (days || 0) * msDays +
                 (hours || 0) * msHours +
                 (minutes || 0) * msMinutes +
@@ -165,7 +173,7 @@ export default class TimeSpan {
      */
     public toString(formatAs12: boolean = false): string {
 
-        let ams = this.milliseconds;
+        let ams = this.msSinceEpoch;
 
         const text = [];
         let postFix = "";
@@ -203,4 +211,16 @@ export default class TimeSpan {
         }
         return `${text.join(":")}${postFix}`;
     }
+
+    public add(ts: TimeSpan): TimeSpan {
+        return new TimeSpan(this.msSinceEpoch + ts.msSinceEpoch);
+    }
+
+    public equals(ts: TimeSpan): boolean {
+        return ts.msSinceEpoch === this.msSinceEpoch;
+    }
+}
+
+if (typeof Window !== "undefined") {
+    (window as any).TimeSpan = TimeSpan;
 }
