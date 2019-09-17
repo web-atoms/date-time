@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/web-atoms/date-time#readme",
   "devDependencies": {
-    "@web-atoms/unit-test": "^1.0.1"
+    "@web-atoms/unit-test": "^1.0.8"
   }
 }
