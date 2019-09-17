@@ -1,7 +1,9 @@
 name: Node.js Package
 
 on: 
-  push: tags
+  push: 
+    tags:
+      - *
 
 jobs:
   build:
