@@ -18,4 +18,10 @@ export default class BasicTests extends TestItem {
         Assert.isEmpty(d.date.time.milliseconds);
     }
 
+    @Test
+    public relativeTime(): void {
+        const d = new DateTime(2010, 1, 1, 20, 50);
+        const dOld = new DateTime(2010, 1, 1, 20, 50);
+    }
+
 }

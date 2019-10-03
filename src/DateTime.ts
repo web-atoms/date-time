@@ -283,6 +283,36 @@ export default class DateTime {
         return (this as any as Date).getTime() === (d as any as Date).getTime();
     }
 
+    public toRelativeString(dt?: DateTime | Date): string {
+        if (!dt) {
+            dt = DateTime.now;
+        } else {
+            if (dt instanceof Date && !(dt instanceof DateTime)) {
+                (dt as any).__proto__ = DateTime.prototype;
+                dt = (dt as any) as DateTime;
+            }
+        }
+
+        const diff = this.diff(dt);
+        if (dt.year !== this.year) {
+            return this.toLocaleDateString();
+        }
+
+        if (diff.totalDays > 6) {
+            return this.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+        }
+
+        if (diff.totalHours > 23) {
+            return this.toLocaleDateString(undefined, { weekday: "short" });
+        }
+
+        if (diff.totalMinutes > 59) {
+            return `${ Math.floor(diff.totalHours) } hours`;
+        }
+
+        return `${Math.floor(diff.totalMinutes)} mins`;
+    }
+
 }
 
 // hack !! for ES5
