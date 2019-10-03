@@ -95,6 +95,50 @@ export default class DateTime {
             (this as any as Date).getMilliseconds());
     }
 
+    /**
+     * Converts a date and time to a string by using the current or specified locale.
+     * @param locales A locale string or array of locale strings that contain one or more language
+     * or locale tags. If you include more than one locale string, list them in descending order of
+     * priority so that the first entry is the preferred locale. If you omit this parameter,
+     * the default locale of the JavaScript runtime is used.
+     * @param options An object that contains one or more properties that specify comparison options.
+     */
+    public toLocaleString: (locales?: string | string[], options?: Intl.DateTimeFormatOptions) => string;
+
+    /**
+     * Converts a date to a string by using the current or specified locale.
+     * @param locales A locale string or array of locale strings that contain one or more language
+     * or locale tags. If you include more than one locale string, list them in descending order
+     * of priority so that the first entry is the preferred locale. If you omit this parameter,
+     * the default locale of the JavaScript runtime is used.
+     * @param options An object that contains one or more properties that specify comparison options.
+     */
+    public toLocaleDateString: (locales?: string | string[], options?: Intl.DateTimeFormatOptions) => string;
+
+     /**
+      * Converts a time to a string by using the current or specified locale.
+      * @param locales A locale string or array of locale strings that contain one or more language
+      * or locale tags. If you include more than one locale string, list them in descending order of
+      * priority so that the first entry is the preferred locale. If you omit this parameter,
+      * the default locale of the JavaScript runtime is used.
+      * @param options An object that contains one or more properties that specify comparison options.
+      */
+    public toLocaleTimeString: (locales?: string | string[], options?: Intl.DateTimeFormatOptions) => string;
+
+    /** Returns a date converted to a string using Universal Coordinated Time (UTC). */
+    public toUTCString: () => string;
+    /** Returns a date as a string value in ISO format. */
+    public toISOString: () => string;
+
+    /** Used by the JSON.stringify method to enable the transformation of an object's data for JavaScript Object
+     * Notation (JSON) serialization.
+     */
+    public toJSON: (key?: any) => string;
+
+    public toTimeString: () => string;
+
+    public toDateString: () => string;
+
     constructor();
     // tslint:disable-next-line: unified-signatures
     constructor(time?: number | string);

@@ -13,6 +13,8 @@ Immutable DateTime library for Web Atoms in JavaScript similar to .Net DateTime 
 # Compatibility
 In order to make usage simple, you can pass DateTime to any method that uses `Date` and everything will still work. To prevent intellisense from listing all Date's methods, we have used a hack to create new Date object in constructor of DateTime.
 
+For easy access, all `to*String` methods of `Date` are available in intellisense.
+
 ```typescript
    const d = DateTime.now();
    console.log(d instance of Date); // prints true..
