@@ -1,7 +1,7 @@
 [![Action Status](https://github.com/web-atoms/date-time/workflows/Build/badge.svg)](https://github.com/web-atoms/unit-test/actions) [![npm version](https://badge.fury.io/js/%40web-atoms%2Fdate-time.svg)](https://badge.fury.io/js/%40web-atoms%2Fdate-time)
 
 # @web-atoms/date-time
-DateTime library for Web Atoms in JavaScript
+Immutable DateTime library for Web Atoms in JavaScript similar to .Net DateTime and TimeSpan
 
 # Features
 1. Immutable DateTime
