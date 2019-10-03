@@ -52,6 +52,22 @@ export default class DateTime {
         return (this as any as Date).getFullYear();
     }
 
+    public get hour(): number {
+        return (this as any as Date).getHours();
+    }
+
+    public get minute(): number {
+        return (this as any as Date).getMinutes();
+    }
+
+    public get second(): number {
+        return (this as any as Date).getSeconds();
+    }
+
+    public get milliSecond(): number {
+        return (this as any as Date).getMilliseconds();
+    }
+
     public get timeZoneOffset(): TimeSpan {
         return TimeSpan.fromMinutes((this as any as Date).getTimezoneOffset());
     }
@@ -227,6 +243,20 @@ export default class DateTime {
         if (milliseconds !== 0) { d.setMilliseconds(d.getMilliseconds() + milliseconds); }
         (d as any).__proto__ = DateTime.prototype;
         return d as any as DateTime;
+    }
+
+    public addMonths(m: number): DateTime {
+        const d = new Date(this.msSinceEpoch);
+        d.setMonth(d.getMonth() + m);
+        (d as any).__proto__ = DateTime.prototype;
+        return d as any;
+    }
+
+    public addYears(y: number): DateTime {
+        const d = new Date(this.msSinceEpoch);
+        d.setFullYear(d.getFullYear() + y);
+        (d as any).__proto__ = DateTime.prototype;
+        return d as any;
     }
 
     /**
