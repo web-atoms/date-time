@@ -235,12 +235,21 @@ export default class DateTime {
         } else {
             days = t as number;
         }
+        function hasValue(n: number | undefined | null, name: string ): boolean {
+            if (n === undefined) {
+                return false;
+            }
+            if (n === null) {
+                throw new Error(`${name} cannot be null`);
+            }
+            return n !== 0;
+        }
         const d = new Date((this as any as Date).getTime());
-        if (days !== 0) { d.setDate(d.getDate() + days); }
-        if (hours !== 0) { d.setHours(d.getHours() + hours); }
-        if (minutes !== 0) { d.setMinutes(d.getMinutes() + minutes); }
-        if (seconds !== 0) { d.setSeconds(d.getSeconds() + seconds); }
-        if (milliseconds !== 0) { d.setMilliseconds(d.getMilliseconds() + milliseconds); }
+        if (hasValue(days, "days")) { d.setDate(d.getDate() + days); }
+        if (hasValue(hours, "hours")) { d.setHours(d.getHours() + hours); }
+        if (hasValue(minutes, "minutes")) { d.setMinutes(d.getMinutes() + minutes); }
+        if (hasValue(seconds, "seconds")) { d.setSeconds(d.getSeconds() + seconds); }
+        if (hasValue(milliseconds, "milliseconds")) { d.setMilliseconds(d.getMilliseconds() + milliseconds); }
         (d as any).__proto__ = DateTime.prototype;
         return d as any as DateTime;
     }
