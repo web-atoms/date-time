@@ -318,6 +318,6 @@ export default class DateTime {
 // hack !! for ES5
 (DateTime.prototype as any).__proto__ = Date.prototype;
 
-if (typeof Window !== "undefined") {
+if (typeof window !== "undefined") {
     (window as any).DateTime = DateTime;
 }

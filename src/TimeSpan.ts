@@ -221,6 +221,6 @@ export default class TimeSpan {
     }
 }
 
-if (typeof Window !== "undefined") {
+if (typeof window !== "undefined") {
     (window as any).TimeSpan = TimeSpan;
 }
