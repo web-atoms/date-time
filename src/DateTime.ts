@@ -18,16 +18,25 @@ import TimeSpan from "./TimeSpan";
  */
 export default class DateTime {
 
+    /**
+     * Current date without time
+     */
     public static get today(): DateTime {
         const a = new DateTime();
         return a.date;
     }
 
+    /**
+     * Current UTC Date
+     */
     public static get utcNow(): DateTime {
         const now = new Date();
         return new DateTime(now.getTime() + now.getTimezoneOffset());
     }
 
+    /**
+     * DateTime at right now
+     */
     public static get now(): DateTime {
         return new DateTime();
     }
@@ -36,10 +45,12 @@ export default class DateTime {
         return new DateTime(s);
     }
 
+    /** Day of month */
     public get day(): number {
         return (this as any as Date).getDate();
     }
 
+    /** Day of week */
     public get dayOfWeek(): number {
         return (this as any as Date).getDay();
     }
@@ -68,6 +79,9 @@ export default class DateTime {
         return (this as any as Date).getMilliseconds();
     }
 
+    /**
+     * Timezone offset as TimeSpan
+     */
     public get timeZoneOffset(): TimeSpan {
         return TimeSpan.fromMinutes((this as any as Date).getTimezoneOffset());
     }
@@ -298,15 +312,15 @@ export default class DateTime {
             return this.toLocaleDateString();
         }
 
-        if (diff.totalDays > 6) {
+        if (Math.abs(diff.totalDays) > 6) {
             return this.toLocaleDateString(undefined, { month: "short", day: "numeric" });
         }
 
-        if (diff.totalHours > 23) {
+        if (Math.abs(diff.totalHours) > 23) {
             return this.toLocaleDateString(undefined, { weekday: "short" });
         }
 
-        if (diff.totalMinutes > 59) {
+        if (Math.abs(diff.totalMinutes) > 59) {
             return `${ Math.floor(diff.totalHours) } hours`;
         }
 
