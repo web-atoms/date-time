@@ -293,8 +293,21 @@ export default class DateTime {
             (this as any as Date).getTime() - (rhs as Date).getTime());
     }
 
-    public equals(d: DateTime): boolean {
+    public equals(d: DateTime | Date): boolean {
+        if (!d) { return false; }
         return (this as any as Date).getTime() === (d as any as Date).getTime();
+    }
+
+    /**
+     * Trims time part and compares the given dates
+     * @param d date to test
+     */
+    public dateEquals(d: DateTime | Date): boolean {
+        if (!d) { return false; }
+        if (!(d instanceof DateTime)) {
+            d = new DateTime(d.getTime());
+        }
+        return this.date.equals(d.date);
     }
 
     public toRelativeString(dt?: DateTime | Date): string {
