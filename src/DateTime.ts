@@ -18,6 +18,13 @@ import TimeSpan from "./TimeSpan";
  */
 export default class DateTime {
 
+    public static from(d: Date | DateTime): DateTime {
+        if (!(d instanceof DateTime)) {
+            d = new DateTime(d.getTime());
+        }
+        return d;
+    }
+
     /**
      * Current date without time
      */
@@ -304,10 +311,7 @@ export default class DateTime {
      */
     public dateEquals(d: DateTime | Date): boolean {
         if (!d) { return false; }
-        if (!(d instanceof DateTime)) {
-            d = new DateTime(d.getTime());
-        }
-        return this.date.equals(d.date);
+        return this.date.equals(DateTime.from(d));
     }
 
     public toRelativeString(dt?: DateTime | Date): string {
