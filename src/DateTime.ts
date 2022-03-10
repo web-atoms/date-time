@@ -176,6 +176,10 @@ export default class DateTime {
 
     public toDateString: () => string;
 
+    public valueOf() {
+        return (this as any as Date).getTime();
+    }
+
     constructor();
     // tslint:disable-next-line: unified-signatures
     constructor(time?: number | string);
@@ -271,21 +275,42 @@ export default class DateTime {
         if (hasValue(minutes, "minutes")) { d.setMinutes(d.getMinutes() + minutes); }
         if (hasValue(seconds, "seconds")) { d.setSeconds(d.getSeconds() + seconds); }
         if (hasValue(milliseconds, "milliseconds")) { d.setMilliseconds(d.getMilliseconds() + milliseconds); }
-        (d as any).__proto__ = DateTime.prototype;
+        Object.setPrototypeOf(d, DateTime.prototype);
         return d as any as DateTime;
     }
 
     public addMonths(m: number): DateTime {
         const d = new Date(this.msSinceEpoch);
         d.setMonth(d.getMonth() + m);
-        (d as any).__proto__ = DateTime.prototype;
+        Object.setPrototypeOf(d, DateTime.prototype);
         return d as any;
     }
 
     public addYears(y: number): DateTime {
         const d = new Date(this.msSinceEpoch);
         d.setFullYear(d.getFullYear() + y);
-        (d as any).__proto__ = DateTime.prototype;
+        Object.setPrototypeOf(d, DateTime.prototype);
+        return d as any;
+    }
+
+    public addDays(day: number): DateTime {
+        const d = new Date(this.msSinceEpoch);
+        d.setDate(d.getDate() + day);
+        Object.setPrototypeOf(d, DateTime.prototype);
+        return d as any;
+    }
+
+    public addHours(h: number): DateTime {
+        const d = new Date(this.msSinceEpoch);
+        d.setHours(d.getHours() + h);
+        Object.setPrototypeOf(d, DateTime.prototype);
+        return d as any;
+    }
+
+    public addMinutes(m: number): DateTime {
+        const d = new Date(this.msSinceEpoch);
+        d.setMinutes(d.getMinutes() + m);
+        Object.setPrototypeOf(d, DateTime.prototype);
         return d as any;
     }
 
@@ -312,6 +337,10 @@ export default class DateTime {
     public dateEquals(d: DateTime | Date): boolean {
         if (!d) { return false; }
         return this.date.equals(DateTime.from(d));
+    }
+
+    public compare(d: DateTime | Date): number {
+        return (this as any as Date).getTime() - (d as any as Date).getTime();
     }
 
     public toRelativeString(dt?: DateTime | Date): string {
