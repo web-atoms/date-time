@@ -8,7 +8,9 @@ Immutable DateTime library for Web Atoms in JavaScript similar to .Net DateTime 
 2. Support for TimeSpan (differences between dates)
 3. Simple Add/Difference
 4. Support for properties
-5. Backward compatibility with JavaScript's Date
+5. Support for Comparison
+6. Support for `valueOf` which makes it easier to compare and sort dates
+7. Backward compatibility with JavaScript's Date
 
 # Compatibility
 In order to make usage simple, you can pass DateTime to any method that uses `Date` and everything will still work. To prevent intellisense from listing all Date's methods, we have used a hack to create new Date object in constructor of DateTime.
@@ -20,7 +22,7 @@ For easy access, all `to*String` methods of `Date` are available in intellisense
    console.log(d instance of Date); // prints true..
 
    // however intellisense does not
-   // show up Date methods
+   // show up for Date methods except for toLocaleDateString etc
    d.year
 ```
 
@@ -42,6 +44,18 @@ Year, Month, Day, Hour, Minute, Second and Millisecond are all properties.
    // returns new instance of DateTime
    // with time part trimmed...
    const day = d.date;
+```
+
+## Comparison
+```typescript
+   const d1 = new DateTime(2010, 1, 1, 20, 50);
+   const d2 = new DateTime(2010, 2, 1, 20, 50);
+   const dt1 = new Date(d1.msSinceEpoch);
+   const dt2 = new Date(d1.msSinceEpoch);
+   // DateTime comparison works correctly
+   Assert.isTrue(d1 < d2);
+   // Date comparison does not work as expected
+   Assert.isFalse(dt1 < dt2);
 ```
 
 ## TimeSpan
@@ -79,4 +93,3 @@ Year, Month, Day, Hour, Minute, Second and Millisecond are all properties.
    console.log(d2); 
 
 ```
-
