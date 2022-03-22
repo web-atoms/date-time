@@ -336,7 +336,7 @@ export default class DateTime {
      */
     public dateEquals(d: DateTime | Date): boolean {
         if (!d) { return false; }
-        return this.date.equals(DateTime.from(d));
+        return this.date.equals(DateTime.from(d).date);
     }
 
     public compare(d: DateTime | Date): number {
