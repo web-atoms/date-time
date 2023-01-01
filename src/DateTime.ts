@@ -18,9 +18,21 @@ import TimeSpan from "./TimeSpan";
  */
 export default class DateTime {
 
-    public static from(d: Date | DateTime): DateTime {
+    /**
+     * Returns DateTime new instance from Date or String, if d is DateTime already
+     * it will return the d.
+     * @param d Date | DateTime | string
+     * @returns DateTime
+     */
+    public static from(d: Date | DateTime | string): DateTime {
+        if (!d) {
+            return null;
+        }
         if (!(d instanceof DateTime)) {
-            d = new DateTime(d.getTime());
+            if (d instanceof Date) {
+                d = new DateTime(d.getTime());
+            }
+            return new DateTime(d as any);
         }
         return d;
     }
@@ -62,22 +74,37 @@ export default class DateTime {
         return (this as any as Date).getDay();
     }
 
+    /**
+     * Current month, 0 is January
+     */
     public get month(): number {
         return (this as any as Date).getMonth();
     }
 
+    /**
+     * Current full year
+     */
     public get year(): number {
         return (this as any as Date).getFullYear();
     }
 
+    /**
+     * Current hour of the day
+     */
     public get hour(): number {
         return (this as any as Date).getHours();
     }
 
+    /**
+     * Current minute of the hour
+     */
     public get minute(): number {
         return (this as any as Date).getMinutes();
     }
 
+    /**
+     * Current second of the minute
+     */
     public get second(): number {
         return (this as any as Date).getSeconds();
     }
@@ -176,23 +203,13 @@ export default class DateTime {
 
     public toDateString: () => string;
 
-    public valueOf() {
-        return (this as any as Date).getTime();
-    }
-
-    constructor();
-    // tslint:disable-next-line: unified-signatures
-    constructor(time?: number | string);
+    /**
+     * Creates new DateTime instance from given input,
+     * input parameters are exactly same as `Date`
+     */
     constructor(
-        year?: number, month?: number, date?: number, hours?: number,
-        // tslint:disable-next-line: unified-signatures
-        minutes?: number, seconds?: number, ms?: number);
-    constructor(
-        a?: any, b?: number, c?: number, d?: number,
+        a?: any | string, b?: number, c?: number, d?: number,
         e?: number, f?: number, g?: number) {
-        // super();
-        // tslint:disable-next-line: no-string-literal
-        this["__proto__"] = DateTime.prototype;
         let rd: any;
         switch (arguments.length) {
             case 0:
@@ -219,7 +236,7 @@ export default class DateTime {
             default:
             rd = new Date(a, b, c, d, e, f, g) as any;
         }
-        rd.__proto__ = DateTime.prototype;
+        Object.setPrototypeOf(rd, DateTime.prototype);
         return rd as any;
     }
 
@@ -371,6 +388,15 @@ export default class DateTime {
         }
 
         return `${Math.floor(diff.totalMinutes)} mins`;
+    }
+
+    /**
+     * Returns number so that DateTime in logical comparison
+     * returns correct answer. Such as DateTime.from("2022-02-01") > DateTime.from("2021-02-01") returns true.
+     * @returns Milliseconds since EPOCH
+     */
+    public valueOf() {
+        return (this as any as Date).getTime();
     }
 
 }
