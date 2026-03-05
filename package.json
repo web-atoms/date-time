@@ -20,6 +20,7 @@
   "homepage": "https://github.com/web-atoms/date-time#readme",
   "devDependencies": {
     "@web-atoms/esm-test": "^1.0.8",
-    "@types/node": "^25.3.3"
+    "@types/node": "^25.3.3",
+    "typescript": "^5.9.3"
   }
 }

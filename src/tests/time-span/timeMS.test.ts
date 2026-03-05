@@ -1,5 +1,5 @@
 import assert from "node:assert";
-import DateTime from "../../DateTime";
+import DateTime from "../../DateTime.js";
 
 export default function() {
     const d = new DateTime(2019, 0, 1, 3, 30, 20, 10);

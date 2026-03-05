@@ -1,4 +1,4 @@
-import DateTime from "../../DateTime";
+import DateTime from "../../DateTime.js";
 import assert from "node:assert";
 
 export default function() {

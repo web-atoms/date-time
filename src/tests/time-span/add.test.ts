@@ -1,6 +1,6 @@
 import assert from "node:assert";
-import DateTime from "../../DateTime";
-import TimeSpan from "../../TimeSpan";
+import DateTime from "../../DateTime.js";
+import TimeSpan from "../../TimeSpan.js";
 
 export default function() {
     const d1 = new DateTime(2019, 0, 1, 2, 30, 40, 50);    

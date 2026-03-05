@@ -1,5 +1,5 @@
 import assert from "assert";
-import DateTime from "../../DateTime";
+import DateTime from "../../DateTime.js";
 
 export default function() {
     const d = DateTime.today;

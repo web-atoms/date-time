@@ -1,5 +1,5 @@
 import assert from "node:assert";
-import TimeSpan from "../../TimeSpan";
+import TimeSpan from "../../TimeSpan.js";
 
 export default function() {
     const ts = TimeSpan.parse("1:1:20:0");
