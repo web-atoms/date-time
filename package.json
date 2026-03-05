@@ -3,6 +3,7 @@
   "version": "3.0.0",
   "description": "DateTime library for Web Atoms",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "node dist/test.js",
     "postversion": "git push --follow-tags"
@@ -18,7 +19,7 @@
   },
   "homepage": "https://github.com/web-atoms/date-time#readme",
   "devDependencies": {
-    "@web-atoms/unit-test": "^1.0.54",
+    "@web-atoms/esm-test": "^1.0.8",
     "@types/node": "^25.3.3"
   }
 }
