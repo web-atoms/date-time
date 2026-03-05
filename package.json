@@ -1,6 +1,6 @@
 {
   "name": "@web-atoms/date-time",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "DateTime library for Web Atoms",
   "main": "index.js",
   "type": "module",
