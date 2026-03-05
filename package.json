@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "node dist/test.js",
-    "postversion": "git push --follow-tags"
+    "postversion": "git push --follow-tags",
+    "push": "git add -A && git commit -m \"dep vb\" && npm version patch"
   },
   "repository": {
     "type": "git",
