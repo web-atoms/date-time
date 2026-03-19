@@ -10,6 +10,7 @@
         "downlevelIteration": false,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
+        "removeComments": true,
         "allowSyntheticDefaultImports": true,
         "lib": [
             "es6",
