@@ -4,6 +4,7 @@
   "description": "DateTime library for Web Atoms",
   "main": "index.js",
   "type": "module",
+  "esm": "dist-esm",
   "scripts": {
     "test": "node dist/test.js",
     "postversion": "git push --follow-tags",
