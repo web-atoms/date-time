@@ -20,5 +20,5 @@ jobs:
           registry-url: https://registry.npmjs.org/        
       - run: npm install
       - run: tsc
-      - run: tsc 
+      - run: tsc -p tsconfig.esm.json
       - run: npm publish --access public
