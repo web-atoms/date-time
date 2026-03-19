@@ -20,4 +20,5 @@ jobs:
           registry-url: https://registry.npmjs.org/        
       - run: npm install
       - run: tsc
+      - run: tsc 
       - run: npm publish --access public
