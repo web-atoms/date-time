@@ -10,7 +10,7 @@
         "downlevelIteration": false,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
         "lib": [
             "es6",
             "dom"
