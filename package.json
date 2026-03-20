@@ -23,6 +23,7 @@
   "devDependencies": {
     "@web-atoms/esm-test": "^1.0.8",
     "@types/node": "^25.3.3",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+     "@web-atoms/ts-to-systemjs": "^1.1.15"
   }
 }
