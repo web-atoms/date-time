@@ -21,6 +21,9 @@ jobs:
       - run: npm install
       - run: tsc
       - run: node ./node_modules/@web-atoms/ts-to-systemjs/index.js
+      - run: cp ./package.json ./package.json.copy
       - run: node ./prepare-esm.js
       - run: tsc -p tsconfig.esm.json
+      - run: rm ./package.json
+      - run: 
       - run: npm publish --access public
