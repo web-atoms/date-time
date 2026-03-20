@@ -1,9 +1,8 @@
 {
   "name": "@web-atoms/date-time",
-  "version": "3.0.12",
+  "version": "3.0.15",
   "description": "DateTime library for Web Atoms",
   "main": "index.js",
-  "type": "module",
   "esm": "dist-esm",
   "scripts": {
     "test": "node dist/test.js",
