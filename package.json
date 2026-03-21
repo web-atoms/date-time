@@ -3,7 +3,9 @@
   "version": "3.0.18",
   "description": "DateTime library for Web Atoms",
   "main": "index.js",
-  "esm": "dist-esm",
+  "esm": {
+    "dist": "dist-esm"
+  },
   "scripts": {
     "test": "node dist/test.js",
     "postversion": "git push --follow-tags",
